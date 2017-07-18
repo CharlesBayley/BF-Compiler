@@ -51,13 +51,16 @@ class Ast:
         message += '\n'
         message += 'int main() {{\n'
         message += ' char array[32768];\n'
-        message += ' char *ptr=array;'
+        message += ' char *ptr=array;\n'
         message += '{body}'
         message += ' return 0;\n'
         message += '}}\n'
         message = message.format(body=self.headNode.compile(0))
         with open(file, 'w') as f:
             f.write(message)
+
+    def optimize(self):
+        self.headNode.optimize()
 
 def parseFile(filename):
     def nextInstruction():

@@ -18,6 +18,7 @@ from ast import parseFile
 if __name__ == '__main__':
     args = docopt(__doc__)
     ast = parseFile(args['<bffile>'])
+    ast.optimize()
     if args['run']:
         ast.run()
     elif args['compile']:
